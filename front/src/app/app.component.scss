@@ -1,0 +1,94 @@
+.parent-menu {
+  background: #d6d9df;
+  height: 20px;
+  padding: 1px 5px;
+  line-height: 20px;
+  font-size: 12px;
+  color: #000058;
+  span {
+    margin: 0 2px;
+    cursor: pointer !important;
+  }
+  input {
+    height: 18px;
+    width: 28px;
+  }
+}
+
+.win41 {
+
+  width: 50%;
+  height: 50%;
+  border: #466e8e solid 1px;
+  float: left;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+
+}
+
+.first-win41 {
+  position: relative;
+}
+
+.main-container {
+  position: absolute;
+  top: 20px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  bottom: 0;
+  border: #466e8e 3px solid;
+  font-size: 13px;
+}
+
+.menu {
+  height: 25px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background: #b8bcc4;
+  justify-content: center;
+  button {
+    display: inline-block;
+    margin: 0 5px;
+    padding: 0;
+    height: 21px;
+    font-size: 12px;
+
+  }
+}
+
+.data {
+  position: absolute;
+  box-sizing: border-box;
+  top: 25px;
+  overflow-y: auto;
+  width: 100%;
+  bottom: 0px;
+
+}
+
+.table {
+  td {
+    padding: 2px 5px;
+
+  }
+  .header {
+    background: #dee0e5;
+  }
+}
+
+.second-win41 {
+  position: relative;
+  .left {
+    float: left;
+    width: 50%;
+    border-right: #b5b9c1 1px solid;
+  }
+  .right {
+    display: inline-block;
+    width: 50%;
+    float: left;
+  }
+}

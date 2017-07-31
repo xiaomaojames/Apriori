@@ -1,0 +1,89 @@
+<div class="parent-menu">
+  <span>Controle: </span><span>|<</span><span>< </span><span> > </span>
+  <span>>|</span><span></span>
+  <span>[start]</span>
+  <span>[stop]</span>
+  <span>NO:</span>
+  <input type="text"/>
+  <span>[Go]</span>
+  <span>Selection:</span>
+  <span>[Word]</span><span>[Agent]</span><span>[Time]</span><span>[Prop]</span>
+</div>
+<div class="main-container">
+  <div class="win41 first-win41">
+    <div class="menu">
+      <span>DataSource</span>
+    </div>
+    <div class="data">
+      <table class="table table-bordered">
+        <tr class="header">
+          <td>Id</td>
+          <td>No</td>
+          <td>Text</td>
+        </tr>
+
+        <tr *ngFor="let item of initData index as i">
+          <td>{{i}}</td>
+          <td>{{i+1}}</td>
+          <td>{{item}}</td>
+        </tr>
+
+
+      </table>
+    </div>
+  </div>
+  <div class="win41 second-win41">
+    <div class="menu">frequent item sets</div>
+    <div class="data">
+      <div class="left">
+        <table class="table table-bordered">
+
+          <tr class="header">
+            <td>Id</td>
+            <td>Item</td>
+            <td>Frequent</td>
+          </tr>
+
+          <tr *ngFor="let item of oneFre index as i">
+            <td>{{i}}</td>
+            <td>{{item.item.sourceArray[0]}}</td>
+            <td>{{item.showTimes}}</td>
+          </tr>
+
+
+        </table>
+      </div>
+      <div class="right">
+        <table class="table table-bordered">
+
+          <tr class="header">
+            <td>Id</td>
+            <td>Item</td>
+            <td>Frequent</td>
+          </tr>
+
+          <tr *ngFor="let item of twoFre index as i">
+            <td>{{i}}</td>
+            <td>{{'{'+item.item.sourceArray[0]+','+item.item.sourceArray[1]+'}'}}</td>
+            <td>{{item.showTimes}}</td>
+          </tr>
+
+
+        </table>
+      </div>
+    </div>
+
+  </div>
+  <div class="win41 third-win41">
+    <div class="menu">Association</div>
+    <div class="bk" id="second-can">
+
+    </div>
+  </div>
+  <div class="win41 fourth-win41">
+    <div class="menu"></div>
+  </div>
+</div>
+
+
+
