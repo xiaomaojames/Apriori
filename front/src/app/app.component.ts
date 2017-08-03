@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 
 import {DrawBalls} from './drawBalls.service';
 import * as _ from 'lodash';
+import 'rxjs/add/operator/switchMap';
 
 declare var $: any;
 import {Http, Response} from '@angular/http';
@@ -9,6 +10,7 @@ import 'rxjs/add/operator/map';
 import {AprioriService} from './apriori.service';
 import {httpFactory} from '@angular/http/src/http_module';
 import {inject} from '@angular/core/testing';
+import {ActivatedRoute, Params, Route} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -49,7 +51,7 @@ export class AppComponent implements OnInit {
     }
   }
 
-  constructor(private http: Http) {
+  constructor(private http: Http, private route: ActivatedRoute) {
   }
 
   // 初始化第二和第三个窗口的画布和窗口大小一样
@@ -60,13 +62,13 @@ export class AppComponent implements OnInit {
     const winHeight = $('.first-win41').height() - 24;
     console.log(winHeight);
     $('#second-can').css('width', winWidth);
-   $('#second-can').css('height', winHeight);
+    $('#second-can').css('height', winHeight);
 
   }
 
   // 请求数据
-  getData() {
-    this.http.get('assets/data.json').subscribe((data: Response) => {
+  getData(id) {
+    this.http.get('http://localhost:3000/' + id).subscribe((data: Response) => {
       const initData = [];
       for (let i = 0; i < 1000; i++) {
         const arr = [];
@@ -85,7 +87,19 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.route.params
+      .switchMap((p: Params) =>
+        this.http.get('http://localhost:3000/' + p['fileName'])
+      ).subscribe((data: Response) => {
+      const initData = [];
+
+      this.ap = new AprioriService(0.34, initData);
+      this.oneFre = this.ap.oneFrequentSets;
+      this.twoFre = this.ap.twoFrequentSets;
+      this.initData = initData;
+      AppComponent.drv = new DrawBalls(this.ap);
+    });
+
     this.initCanvasSize();
-    this.getData();
   }
 }
