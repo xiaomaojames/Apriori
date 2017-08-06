@@ -1,0 +1,12 @@
+.data-menu{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  .content{
+    margin: 100px;
+
+    width: 600px;
+  }
+}

@@ -8,21 +8,24 @@ declare var $: any;
 import {Http, Response} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {AprioriService} from './apriori.service';
-import {httpFactory} from '@angular/http/src/http_module';
-import {inject} from '@angular/core/testing';
+import {config} from '../environments/config';
 import {ActivatedRoute, Params, Route} from '@angular/router';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-list',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
   static drv;
-  initData;
-  ap;
+  static ap;
   oneFre = [];
   twoFre = [];
+  initData;
+  myIndex = 0;
+  winHeight = 0;
+  runState = false;
+  runOnce = false;
 
   static drawBall() {
     const ball = new Path2D();
@@ -59,47 +62,66 @@ export class AppComponent implements OnInit {
     // 获得窗口大小
     const winWidth = $('.first-win41').width() - 10;
     console.log(winWidth);
-    const winHeight = $('.first-win41').height() - 24;
-    console.log(winHeight);
+    this.winHeight = $('.first-win41').height() - 24;
     $('#second-can').css('width', winWidth);
-    $('#second-can').css('height', winHeight);
+    $('#second-can').css('height', this.winHeight);
 
-  }
-
-  // 请求数据
-  getData(id) {
-    this.http.get('http://localhost:3000/' + id).subscribe((data: Response) => {
-      const initData = [];
-      for (let i = 0; i < 1000; i++) {
-        const arr = [];
-        for (let k = 0; k < _.random(10, 20); k++) {
-          arr.push(_.random(1, 15).toString());
-        }
-        initData.push(arr);
-      }
-
-      this.ap = new AprioriService(0.34, initData);
-      this.oneFre = this.ap.oneFrequentSets;
-      this.twoFre = this.ap.twoFrequentSets;
-      this.initData = initData;
-      AppComponent.drv = new DrawBalls(this.ap);
-    });
   }
 
   ngOnInit() {
     this.route.params
       .switchMap((p: Params) =>
-        this.http.get('http://localhost:3000/' + p['fileName'])
+        this.http.get(config.apiAddress + p['fileName'])
       ).subscribe((data: Response) => {
       const initData = [];
-
-      this.ap = new AprioriService(0.34, initData);
-      this.oneFre = this.ap.oneFrequentSets;
-      this.twoFre = this.ap.twoFrequentSets;
+      _.each(data.json(), (row) => {
+        initData.push(row.text.split(' '));
+      });
       this.initData = initData;
-      AppComponent.drv = new DrawBalls(this.ap);
+      const that = this;
+      const si = setInterval(() => {
+        console.log(that.myIndex);
+        if (that.runOnce || that.runState) {
+          ++that.myIndex;
+          AppComponent.ap = new AprioriService(0.3, _.slice(initData, 0, that.myIndex));
+          that.oneFre = AppComponent.ap.oneFrequentSets;
+          that.twoFre = AppComponent.ap.twoFrequentSets;
+          AppComponent.drv = new DrawBalls(AppComponent.ap);
+          that.runOnce = false;
+        }
+
+        // 找到当前行元素 然后判断离当前窗口底部的距离，防止超出可视区域
+        if ($('.first-win41 .data')[0].scrollTop + that.winHeight - 50 < 25 * that.myIndex) {
+          $('.first-win41 .data')[0].scrollTop += that.winHeight - 50;
+        }
+        // 也不能超出顶部可视区域
+        if ($('.first-win41 .data')[0].scrollTop > 25 * that.myIndex) {
+          $('.first-win41 .data')[0].scrollTop -= that.winHeight - 50;
+        }
+
+        if (that.myIndex > initData.length) {
+          that.runState = false;
+          that.myIndex = 0;
+          // window.clearInterval(si);
+        }
+      }, 1000);
+
     });
 
     this.initCanvasSize();
+  }
+
+  start() {
+    this.runState = true;
+  }
+
+  stop() {
+    this.runState = false;
+  }
+
+  go(no) {
+    this.myIndex = no;
+    this.runOnce = true;
+    this.runState = false;
   }
 }

@@ -15,33 +15,8 @@ export class DrawBalls {
           'base': '人物关系'
         }
       ],
-      'nodes': [// 展示的节点
-        // {
-        //   'name': '刘烨', // 节点名称
-        //   'value': 3,
-        //   'category': 0// 与关系网类别索引对应，此处只有一个关系网所以这里写0
-        // },
-        // {
-        //   'name': '霓娜',
-        //   'value': 1,
-        //   'category': 0
-        // },
-        // {
-        //   'name': '诺一',
-        //   'value': 1,
-        //   'category': 0
-        // }
-      ],
-      'links': [// 节点之间连接
-        // {
-        //   'source': 0, // 起始节点，0表示第一个节点
-        //   'target': 1 // 目标节点，1表示与索引为1的节点进行连接
-        // },
-        // {
-        //   'source': 0,
-        //   'target': 2
-        // }
-      ]
+      'nodes': [],
+      'links': []
     };
     _.each(ap.oneFrequentSets, (fre) => {
       const node: any = {};
@@ -87,44 +62,9 @@ export class DrawBalls {
         edges: webkitDep.links
       }]
     };
-    console.log(option);
+
     myChart.setOption(option);
   }
-
-
-//   // 随机20个小球
-//   balls = [];
-//   lines = [];
-//   drawBallRaf;
-//   drawLineRaf;
-//   ballIndex = 0;
-//   lineIndex = 0;
-//   canvas;
-//   ctx;
-//
-//
-//   creatBalls() {
-//     for (let i = 0; i < 200; i++) {
-//       this.balls.push([_.random(50, 300), _.random(50, 300)]);
-//     }
-//   }
-//
-// // 随机10个关系
-//   creatLines() {
-//     for (let i = 0; i < 20; i++) {
-//       this.lines.push([this.balls[_.random(0, 19)], this.balls[_.random(0, 19)]]);
-//     }
-//   }
-//
-//   // 小球进入并连线
-//
-//   constructor  () {
-//     this.canvas = <HTMLCanvasElement>document.getElementById('second-can');
-//     this.ctx = this.canvas.getContext('2d');
-//     this.creatBalls();
-//     this.creatLines();
-//   }
-
 }
 
 

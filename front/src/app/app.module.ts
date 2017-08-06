@@ -6,6 +6,7 @@ import {AppComponent} from './app.component';
 import {DataMenuComponent} from './data-menu.component';
 import {RouterModule} from '@angular/router';
 import {AppBootComponent} from './app-boot.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,8 +18,8 @@ import {AppBootComponent} from './app-boot.component';
     BrowserModule,
     HttpModule,
     AppRouting,
-    RouterModule
-
+    RouterModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppBootComponent]

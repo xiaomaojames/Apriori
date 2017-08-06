@@ -16,7 +16,6 @@
 }
 
 .win41 {
-
   width: 50%;
   height: 50%;
   border: #466e8e solid 1px;
@@ -24,7 +23,6 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-
 }
 
 .first-win41 {
@@ -55,7 +53,6 @@
     padding: 0;
     height: 21px;
     font-size: 12px;
-
   }
 }
 
@@ -66,10 +63,12 @@
   overflow-y: auto;
   width: 100%;
   bottom: 0px;
-
 }
 
 .table {
+  .active1 {
+    background: #466e8e;
+  }
   td {
     padding: 2px 5px;
 

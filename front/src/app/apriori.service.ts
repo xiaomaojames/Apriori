@@ -81,7 +81,7 @@ export class AprioriService {
         this.twoFrequentSets.push(fre);
       }
     }
-    console.log(this.twoFrequentSets);
+
     _.forEach(this.initFrequent, (ifre) => {
       _.forEach(this.twoFrequentSets, (tfre) => {
         if (ifre.contains(tfre)) {

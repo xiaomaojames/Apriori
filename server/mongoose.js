@@ -1,3 +1,4 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://192.168.31.222/anlize');
+var mongoAddress = require('./config').mongondbAddress;
+mongoose.connect(mongoAddress);
 module.exports=mongoose;

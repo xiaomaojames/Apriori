@@ -1,11 +1,11 @@
 <div class="parent-menu">
   <span>Controle: </span><span>|<</span><span>< </span><span> > </span>
   <span>>|</span><span></span>
-  <span>[start]</span>
-  <span>[stop]</span>
+  <span (click)="start()">[start]</span>
+  <span (click)="stop()">[stop]</span>
   <span>NO:</span>
-  <input type="text"/>
-  <span>[Go]</span>
+  <input type="text" #num/>
+  <span (click)="go(num.value-2)">[Go]</span>
   <span>Selection:</span>
   <span>[Word]</span><span>[Agent]</span><span>[Time]</span><span>[Prop]</span>
 </div>
@@ -22,7 +22,7 @@
           <td>Text</td>
         </tr>
 
-        <tr *ngFor="let item of initData index as i">
+        <tr *ngFor="let item of initData index as i" [ngClass]="{'active1':i==myIndex}">
           <td>{{i}}</td>
           <td>{{i+1}}</td>
           <td>{{item}}</td>
@@ -44,7 +44,7 @@
             <td>Frequent</td>
           </tr>
 
-          <tr *ngFor="let item of oneFre index as i">
+          <tr *ngFor="let item of oneFre index as i" >
             <td>{{i}}</td>
             <td>{{item.item.sourceArray[0]}}</td>
             <td>{{item.showTimes}}</td>
