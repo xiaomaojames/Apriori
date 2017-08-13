@@ -10,7 +10,7 @@ export class DrawBalls {
       'type': 'force',
       'categories': [// 关系网类别，可以写多组
         {
-          'name': '关联关系', // 关系网名称
+          'name': 'Association', // 关系网名称
           'keyword': {},
           'base': '人物关系'
         }
@@ -37,7 +37,7 @@ export class DrawBalls {
     myChart.hideLoading();
     const option = {
       legend: {
-        data: ['关联关系']// 此处的数据必须和关系网类别中name相对应
+        data: ['Association']// 此处的数据必须和关系网类别中name相对应
       },
       textStyle: {
         color: '#466e8e'

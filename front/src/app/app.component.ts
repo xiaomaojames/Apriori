@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
   oneFre = [];
   twoFre = [];
   initData;
-  myIndex = 0;
+  myIndex = 1;
   winHeight = 0;
   runState = false;
   runOnce = false;
@@ -54,6 +54,10 @@ export class AppComponent implements OnInit {
     }
   }
 
+  comeSoon() {
+    alert("coming soon !!!");
+  }
+
   constructor(private http: Http, private route: ActivatedRoute) {
   }
 
@@ -82,8 +86,10 @@ export class AppComponent implements OnInit {
       const si = setInterval(() => {
         console.log(that.myIndex);
         if (that.runOnce || that.runState) {
-          ++that.myIndex;
-          AppComponent.ap = new AprioriService(0.3, _.slice(initData, 0, that.myIndex));
+          if (!that.runOnce) {
+            ++that.myIndex;
+          }
+          AppComponent.ap = new AprioriService(0.3, _.slice(initData, 0, that.myIndex - 1));
           that.oneFre = AppComponent.ap.oneFrequentSets;
           that.twoFre = AppComponent.ap.twoFrequentSets;
           AppComponent.drv = new DrawBalls(AppComponent.ap);
@@ -121,6 +127,32 @@ export class AppComponent implements OnInit {
 
   go(no) {
     this.myIndex = no;
+    this.runOnce = true;
+    this.runState = false;
+  }
+
+  home() {
+    this.myIndex = 1;
+    this.runOnce = true;
+    this.runState = false;
+    $('.first-win41 .data')[0].scrollTop = 0;
+  }
+
+  end() {
+    this.myIndex = this.initData.length ;
+    this.runOnce = true;
+    this.runState = false;
+    $('.first-win41 .data')[0].scrollTop = 25 * this.initData.length;
+  }
+
+  next() {
+    this.myIndex++;
+    this.runOnce = true;
+    this.runState = false;
+  }
+
+  last() {
+    this.myIndex--;
     this.runOnce = true;
     this.runState = false;
   }

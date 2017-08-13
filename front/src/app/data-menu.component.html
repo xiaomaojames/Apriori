@@ -15,16 +15,25 @@
 
         </ul>
         <br>
-        <hr >
-        <p class="bg-warning">1. 上传文件必须为excel,系统未作格式验证，这不是本次主题的重点</p>
-        <p class="bg-warning">2. 程序只会读取excel里第一个sheet的前两列</p>
-        <p class="bg-warning">3. 其中第一列序号，第二列是一条英文文本</p>
-        <p class="bg-warning">4. 添加完毕后文件名会添加到列表中</p>
+        <button class="btn btn-default" (click)="showLogin()">Show Login</button>
+        <hr>
+
+        <p class="bg-warning">1. Uploaded file must be in excel format,
+          this system has no format validations.
+        </p>
+        <p class="bg-warning">2. The program will only read the first two columns of the first sheet in excel
+        </p>
+        <p class="bg-warning">3. The first column is numbers, the second column is an English text
+        </p>
+        <p class="bg-warning">4. After adding a file ,its name will be added to the list
+        </p>
         <div class="row">
           <div class="col col-md-6">
-            <input type="file" #myfile name="aa" (change)="uploadFile(myfile.files[0])"></div>
+            <input type="file" #myfile name="aa" (change)="uploadFile(myfile.files[0])">
+          </div>
 
         </div>
+
 
       </div>
     </div>

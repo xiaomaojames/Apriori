@@ -1,6 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Http} from '@angular/http';
 import {config} from '../environments/config';
+import {BsModalService} from "ngx-bootstrap";
+import {BsModalRef} from 'ngx-bootstrap/modal/modal-options.class';
+import {LoginComponent} from "./login/login.component";
 
 declare var $: any;
 
@@ -12,8 +15,9 @@ declare var $: any;
 export class DataMenuComponent implements OnInit {
   dataList = [];
   myFile;
+  bsModalRef: BsModalRef;
 
-  constructor(private http: Http) {
+  constructor(private http: Http, private modalService: BsModalService) {
   }
 
   ngOnInit() {
@@ -28,6 +32,10 @@ export class DataMenuComponent implements OnInit {
     this.http.get(config.apiAddress + 'delete/' + fileName).subscribe(() => {
       this.ngOnInit();
     });
+  }
+
+  showLogin() {
+    this.bsModalRef = this.modalService.show(LoginComponent);
   }
 
   uploadFile(p) {

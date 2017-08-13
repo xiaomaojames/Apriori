@@ -7,19 +7,23 @@ import {DataMenuComponent} from './data-menu.component';
 import {RouterModule} from '@angular/router';
 import {AppBootComponent} from './app-boot.component';
 import {FormsModule} from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { ModalModule } from 'ngx-bootstrap';
 
 @NgModule({
   declarations: [
     AppComponent,
     DataMenuComponent,
-    AppBootComponent
+    AppBootComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     AppRouting,
     RouterModule,
-    FormsModule
+    FormsModule,
+    ModalModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppBootComponent]

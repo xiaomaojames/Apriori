@@ -1,0 +1,50 @@
+<div class="login-content">
+  <div class="content">
+    <div class="panel panel-default">
+      <div class="panel-heading">Login in kbdex</div>
+      <div class="panel-body">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label for="server" class="col-sm-2 control-label">Server</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="server" placeholder="192.168.31.222">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="port" class="col-sm-2 control-label">Port</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="port" placeholder="80">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label" >Email</label>
+            <div class="col-sm-10">
+              <input type="email" class="form-control" id="inputEmail3" name="userName" [(ngModel)]="userName" placeholder="Email">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+            <div class="col-sm-10">
+              <input type="password" class="form-control" id="inputPassword3" name="password" [(ngModel)]="password" placeholder="Password">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-5">
+              <button type="button" (click)="submit()" class="btn btn-default">Login In</button>
+            </div>
+            <div class=" col-sm-5">
+              <button type="button" (click)="close()" class="btn btn-default">Close</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+</div>
